@@ -1,0 +1,8 @@
+embedding/atcoder_c/train-cig.pt filter=lfs diff=lfs merge=lfs -text
+embedding/atcoder_c/train-ctg.pt filter=lfs diff=lfs merge=lfs -text
+embedding/atcoder_c/val-ctg.pt filter=lfs diff=lfs merge=lfs -text
+embedding/atcoder_c/val-cig.pt filter=lfs diff=lfs merge=lfs -text
+embedding/atcoder_c/test-cig.pt filter=lfs diff=lfs merge=lfs -text
+embedding/atcoder_c/test-ctg.pt filter=lfs diff=lfs merge=lfs -text
+embedding/aizu_cpp/train-ctg.pt filter=lfs diff=lfs merge=lfs -text
+embedding/aizu_cpp/train-cig.pt filter=lfs diff=lfs merge=lfs -text
