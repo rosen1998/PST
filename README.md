@@ -8,18 +8,18 @@ Source code for the paper **PST: Measuring Skill Proficiency in Programming Exer
 
 ### Train and test
 ```python
-train.py --dataset_name atcoder_c --num_exercises 1671 --do_test True
-train.py --dataset_name aizu_cpp --num_exercises 2207 --do_test True
+python train.py --dataset_name atcoder_c --num_exercises 1671 --do_test True
+python train.py --dataset_name aizu_cpp --num_exercises 2207 --do_test True
 ```
 ### Train only
 ```python
-train.py --dataset_name atcoder_c --num_exercises 1671
-train.py --dataset_name aizu_cpp --num_exercises 2207
+python train.py --dataset_name atcoder_c --num_exercises 1671
+python train.py --dataset_name aizu_cpp --num_exercises 2207
 ```
 ### Test only
 ```python
-test.py --dataset_name atcoder_c
-test.py --dataset_name aizu_cpp
+python test.py --dataset_name atcoder_c
+python test.py --dataset_name aizu_cpp
 ```
 - We removed some data that could not be processed by some baselines, such as submissions without corresponding exercise text. So the actual number of submissions of Atcoder_C for the experiment was 423841, and the actual number of submissions of AIZU_Cpp for the experiment was 264839.
 ## Corrections
