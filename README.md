@@ -2,6 +2,10 @@
 Source code for the paper **PST: Measuring Skill Proficiency in Programming Exercise Process via Programming Skill Tracing**.
 
 ## Usage
+### Download pre-trained CIG, CTG embedding
+- [Google drive](https://drive.google.com/drive/folders/1PAyaS2xalpYrOzCpaHtfBiVaGQK3x_bJ?usp=share_link)
+- Put the downloaded embedding folder into the root directory of the PST project.
+
 ### Train and test
 ```python
 train.py --dataset_name atcoder_c --num_exercises 1671 --do_test True
