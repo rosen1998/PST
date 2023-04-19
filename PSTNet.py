@@ -46,15 +46,6 @@ class LearningProcessModule(nn.Module):
         self.sig = nn.Sigmoid()
         self.relu = nn.ReLU()
         self.tanh = nn.Tanh()
-    
-    def get_answer_embedding(self, answer, embedding):
-        e = torch.zeros((answer.shape[0], 2*self.embedding_dim)).to(self.device)
-        gate = (answer==1).float().view(-1, 1)
-        zero_embedding = torch.zeros((answer.shape[0], self.embedding_dim)).to(self.device)
-        e_1 = torch.cat((embedding, zero_embedding), 1)
-        e_2 = torch.cat((zero_embedding, embedding), 1)
-        e = gate*e_1 + (1-gate)*e_2
-        return e
 
     def forward(self, coding_ability, programming_knowledge, exercises, feedbacks, detail_is_ac, CIGs, CTGs, exercise_id):
         e_cig_last = torch.zeros((exercises.shape[0], self.embedding_dim)).to(self.device)
