@@ -1,13 +1,14 @@
 from data import PST_DATA
 from PSTNet import PST
+from run import train_PST as train
+from run import test_PST as test
+
 import argparse
 import torch
 import numpy as np
 import os
 import pickle
 import logging
-from run import train_PST as train
-from run import test_PST as test
 
 target_type = {
     'is_ac': 'main',

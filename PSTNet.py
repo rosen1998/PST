@@ -1,9 +1,10 @@
 import torch.nn as nn
 import torch
 import sys
-sys.path.append('../')
 from torch.autograd import Variable
 import warnings
+
+sys.path.append('../')
 warnings.filterwarnings("ignore")
 
 class LearningProcessModule(nn.Module):
