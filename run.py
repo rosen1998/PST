@@ -46,13 +46,13 @@ def train_PST(net, optimizer, targets, e_cig, e_ctg, detail_is_acs, rates, exerc
         optimizer.zero_grad()
         target_batch = torch.from_numpy(targets[i*args.batch_size:(i+1)*args.batch_size])
         rates_batch = torch.from_numpy(rates[i*args.batch_size:(i+1)*args.batch_size])
-        exercises_batch = np.array([])
-        detail_is_ac_batch = np.array([])
         e_cig_batch = e_cig[i*args.batch_size:i*args.batch_size+target_batch.shape[0]].to(args.device)
         e_ctg_batch = e_ctg[i*args.batch_size:i*args.batch_size+target_batch.shape[0]].to(args.device)
         exercises_batch = torch.from_numpy(exercises[i*args.batch_size:(i+1)*args.batch_size]).long().to(args.device)
         detail_is_ac_batch = torch.from_numpy(detail_is_acs[i*args.batch_size:(i+1)*args.batch_size]).to(args.device)
+        
         y_batch, r_batch = net(detail_is_ac_batch, exercises_batch, e_cig_batch, e_ctg_batch)
+        
         y_batch = y_batch[:, 1:].cpu()
         r_batch = r_batch[:, 1:].cpu()
         target_batch = target_batch[:, 1:]
@@ -60,6 +60,7 @@ def train_PST(net, optimizer, targets, e_cig, e_ctg, detail_is_acs, rates, exerc
         rates_batch = rates_batch[:, 1:].reshape(-1)
         y_batch = y_batch.reshape(-1)
         r_batch = r_batch.reshape(-1)
+        
         # mask the pad data
         mask_count = torch.sum(target_batch >= -.9)
         pred_count += mask_count
@@ -69,6 +70,7 @@ def train_PST(net, optimizer, targets, e_cig, e_ctg, detail_is_acs, rates, exerc
         target_mask = target_batch[mask].double()
         r_mask = r_batch[ra_mask].double()
         rate_mask = rates_batch[ra_mask].double()
+        
         loss = loss_f(y_mask, r_mask, target_mask, rate_mask, args)
 
 
@@ -100,6 +102,7 @@ def train_PST(net, optimizer, targets, e_cig, e_ctg, detail_is_acs, rates, exerc
     all_target = all_target.reshape(-1)
     all_r = all_r.reshape(-1)
     all_rate = all_rate.reshape(-1)
+    
     all_loss = loss_f(all_pred, all_r, all_target, all_rate, args)
 
     return all_loss
@@ -130,13 +133,13 @@ def test_PST(net, targets, e_cig, e_ctg, detail_is_acs, rates, exercises, logger
     for i in tqdm(range(N), desc='testing a model...'):
         target_batch = torch.from_numpy(targets[i*args.batch_size:(i+1)*args.batch_size])
         rates_batch = torch.from_numpy(rates[i*args.batch_size:(i+1)*args.batch_size])
-        exercises_batch = np.array([])
-        detail_is_ac_batch = np.array([])
         e_cig_batch = e_cig[i*args.batch_size:i*args.batch_size+target_batch.shape[0]].to(args.device)
         e_ctg_batch = e_ctg[i*args.batch_size:i*args.batch_size+target_batch.shape[0]].to(args.device)
         exercises_batch = torch.from_numpy(exercises[i*args.batch_size:(i+1)*args.batch_size]).long().to(args.device)
         detail_is_ac_batch = torch.from_numpy(detail_is_acs[i*args.batch_size:(i+1)*args.batch_size]).to(args.device)
+        
         y_batch, r_batch = net(detail_is_ac_batch, exercises_batch, e_cig_batch, e_ctg_batch)
+        
         y_batch = y_batch[:, 1:].cpu()
         r_batch = r_batch[:, 1:].cpu()
         target_batch = target_batch[:, 1:]
@@ -144,6 +147,7 @@ def test_PST(net, targets, e_cig, e_ctg, detail_is_acs, rates, exercises, logger
         rates_batch = rates_batch[:, 1:].reshape(-1)
         y_batch = y_batch.reshape(-1)
         r_batch = r_batch.reshape(-1)
+        
         # mask the pad data
         mask_count = torch.sum(target_batch >= -.9)
         pred_count += mask_count
@@ -153,6 +157,7 @@ def test_PST(net, targets, e_cig, e_ctg, detail_is_acs, rates, exercises, logger
         target_mask = target_batch[mask].double()
         r_mask = r_batch[ra_mask].double()
         rate_mask = rates_batch[ra_mask].double()
+        
         loss = loss_f(y_mask, r_mask, target_mask, rate_mask, args)
 
 
@@ -181,7 +186,9 @@ def test_PST(net, targets, e_cig, e_ctg, detail_is_acs, rates, exercises, logger
     all_target = all_target.reshape(-1)
     all_r = all_r.reshape(-1)
     all_rate = all_rate.reshape(-1)
+    
     all_loss = loss_f(all_pred, all_r, all_target, all_rate, args)
+    
     if 'rate' in optimize_target:
         rmse = RMSE(all_pred, all_target)
         performance = {
