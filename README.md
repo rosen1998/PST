@@ -24,7 +24,7 @@ test.py --dataset_name aizu_cpp
 - We removed some data that could not be processed by some baselines, such as submissions without corresponding exercise text. So the actual number of submissions of Atcoder_C for the experiment was 423841, and the actual number of submissions of AIZU_Cpp for the experiment was 264839.
 ## Corrections
 1. In our paper, the equation for the cross-entropy loss function was written incorrectly, so the correct loss function for the PST model is as follows:
-$$ L = -\alpha\cdot\sum_{i=1}^M(a_i \log{pred_i} + (1-a_i)\log{(1-pred_i)})+\beta \cdot \sum_{j=1}^N \lvert pred^s_j - s_j \rvert $$
+! [PST_equation](/equation/PST.png)
 2. We made a mistake in calculating the AUC of task 1 for all the baselines and PST. The good thing is that this mistake occurred in the final testing phase and did not affect model training, model selection, and the calculation of other metrics for task 1 and all metrics for other tasks. The correct experimental results of the PST model are as follows:
 - Atcoder_C
   - Task1
