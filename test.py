@@ -6,7 +6,6 @@ import numpy as np
 import os
 import pickle
 import logging
-from run import train_PST as train
 from run import test_PST as test
 
 target_type = {
@@ -55,7 +54,6 @@ if __name__ == '__main__':
     parser.add_argument('--epoch', type=int, default=50)
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--num_exercises', type=int, default=1671)
-    parser.add_argument('--node_type_pad_token', type=int, default=1)
     parser.add_argument('--embedding_dim', type=int, default=128)
     parser.add_argument('--device', type=str, default='cuda:0')
     parser.add_argument('--model_path', type=str, default='model')

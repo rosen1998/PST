@@ -1,8 +1,6 @@
 import torch.nn as nn
 import torch
-import torch.nn.functional as F
 import sys
-import numpy as np
 sys.path.append('../')
 from torch.autograd import Variable
 import warnings
