@@ -3,7 +3,7 @@ Source code for the paper **PST: Measuring Skill Proficiency in Programming Exer
 
 ## Usage
 ### Download pre-trained CIG, CTG embedding
-- [Google drive](https://drive.google.com/drive/folders/1PAyaS2xalpYrOzCpaHtfBiVaGQK3x_bJ?usp=share_link)
+- [Baidu Netdisk](https://pan.baidu.com/s/16JV_8elbMLQ2_OurZk1PTA?pwd=78n3)
 - Put the downloaded embedding folder into the root directory of the PST project.
 
 ### Train and test
